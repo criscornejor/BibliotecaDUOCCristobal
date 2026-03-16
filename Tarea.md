@@ -4,7 +4,7 @@ Estudiante: Cristobal Cornejo
 Fecha: 16 de Marzo de 2026
 
 1. URL del Repositorio GitHub
-[ENLACE AL REPOSITORIO GITHUB AQUÍ]
+    https://github.com/criscornejor/BibliotecaDUOCCristobal.git
 
 2. Explicación del Código
 
