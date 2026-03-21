@@ -2,6 +2,7 @@ package dev.cristobal.biblioteca_DUOC.repository;
 
 
 import dev.cristobal.biblioteca_DUOC.model.Libro;
+import dev.cristobal.biblioteca_DUOC.model.Prestamo;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -12,6 +13,7 @@ import java.util.List;
 @Repository
 public class LibroRepository {
     private List<Libro> listaLibros = new ArrayList<>();
+    private List<Prestamo> listaPrestamos = new ArrayList<>();
 
     public LibroRepository() {
         listaLibros.add(new Libro(1, "9789569646638", "Fuego y Sangre", "Penguin Random House Grupo Editorial", 2018, "George R. R. Martin"));
@@ -38,6 +40,58 @@ public class LibroRepository {
         }
         return null;
     }
+    //Quiero dejar en claro que aúnque estoy avanzando y creo estár haciendolo bien, no tengo idea
+    //si esto vaya a funcionar TnT.
+
+    public List<Prestamo> obtenerTotalPrestamo() {
+        return listaPrestamos;
+    }
+
+    public Prestamo guardarPrestamo(Prestamo prestamo) {
+        listaPrestamos.add(prestamo);
+        return prestamo;
+    }
+
+    public Prestamo buscarPrestamoPorId(int id_prestamo) {
+        for (Prestamo prestamo : listaPrestamos) {
+            if (prestamo.getId_prestamo() == id_prestamo) {
+                return prestamo;
+            }
+        }
+        return null;
+    }
+
+    public Prestamo actualizarPrestamo(Prestamo prestamo) {
+        int id_prestamo = 0;
+        int idPosition = 0;
+
+        for (int i = 0; i<listaPrestamos.size(); i++) {
+            if(listaPrestamos.get(i).getId_prestamo() == prestamo.getId_prestamo()) {
+                id_prestamo = listaPrestamos.get(i).getId_prestamo();
+                idPosition = i;
+            }
+        }
+        Prestamo prestamo1 = new Prestamo();
+        prestamo1.setId_prestamo(id_prestamo);
+        prestamo1.setId_libro(listaPrestamos.get(idPosition).getId_libro());
+        prestamo1.setRun_solicitante(prestamo.getRun_solicitante());
+        prestamo1.setFecha_solicitud(prestamo.getFecha_solicitud());
+        prestamo1.setFecha_entrega(prestamo.getFecha_entrega());
+        prestamo1.setCantidad_dias(prestamo.getCantidad_dias());
+        prestamo1.setCantidad_multas(prestamo.getCantidad_multas());
+
+        listaPrestamos.set(idPosition, prestamo1);
+        return prestamo1;
+    }
+
+    public void borrarPrestamo(int id) {
+        Prestamo prestamo = buscarPrestamoPorId(id);
+        if(prestamo != null) {
+            listaPrestamos.remove(prestamo);
+        }
+    }
+
+
     public Libro buscarPorIsbn(String isbn) {
         for (Libro libro : listaLibros) {
             if (libro.getIsbn().equals(isbn)) {

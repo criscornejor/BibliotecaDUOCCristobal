@@ -1,6 +1,7 @@
 package dev.cristobal.biblioteca_DUOC.service;
 
 
+import dev.cristobal.biblioteca_DUOC.model.Prestamo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import dev.cristobal.biblioteca_DUOC.repository.LibroRepository;
@@ -62,5 +63,26 @@ public class LibroService {
 
     public List<Libro> libroPorFecha(int fechaPublicacion) {
         return libroRepository.librosPorFecha(fechaPublicacion);
+    }
+
+    public List<Prestamo> obtenerTotalPrestamo() {
+        return libroRepository.obtenerTotalPrestamo();
+    }
+
+    public Prestamo guardarPrestamo(Prestamo prestamo) {
+        return libroRepository.guardarPrestamo(prestamo);
+    }
+
+    public Prestamo buscarPrestamoPorId(int id_prestamo) {
+        return libroRepository.buscarPrestamoPorId(id_prestamo);
+    }
+
+    public Prestamo actualizarPrestamo(Prestamo prestamo) {
+        return libroRepository.actualizarPrestamo(prestamo);
+    }
+
+    public String borrarPrestamo(int id_prestamo) {
+        libroRepository.borrarPrestamo(id_prestamo);
+        return "Prestamo borrado";
     }
 }

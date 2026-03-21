@@ -1,6 +1,7 @@
 package dev.cristobal.biblioteca_DUOC.controller;
 
 
+import dev.cristobal.biblioteca_DUOC.model.Prestamo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import dev.cristobal.biblioteca_DUOC.model.Libro;
@@ -51,10 +52,12 @@ public class LibroController {
     public Libro masNuevo() {
         return libroService.masNuevo();
     }
+
     @GetMapping("/buscarPorAutor/{nombreAutor}")
     public List<Libro> buscarPorAutor(@PathVariable String nombreAutor) {
         return libroService.buscarPorAutor(nombreAutor);
     }
+
     @GetMapping("/ordenarPorFecha")
     public List<Libro>  ordenarPorFecha() {
         return libroService.ordenarPorFecha();
@@ -68,5 +71,30 @@ public class LibroController {
     @GetMapping("/buscarPorFecha/{fechaPublicacion}")
     public List<Libro> libroPorFecha(@PathVariable int fechaPublicacion) {
         return libroService.libroPorFecha(fechaPublicacion);
+    }
+
+    @GetMapping("/obtenerPrestamos")
+    public List<Prestamo> obtenerTotalPrestamo() {
+        return libroService.obtenerTotalPrestamo();
+    }
+
+    @PostMapping("/guardarPrestamos")
+    public Prestamo guardarPrestamo(@PathVariable Prestamo prestamo) {
+        return libroService.guardarPrestamo(prestamo);
+    }
+
+    @GetMapping("/prestamos/{id_prestamo}")
+    public Prestamo BuscarPorId(@PathVariable int id_prestamo){
+        return libroService.buscarPrestamoPorId(id_prestamo);
+    }
+
+    @PutMapping("/prestamos/{id_prestamo}")
+    public Prestamo actualizarPrestamo(@PathVariable int id_prestamo, @RequestBody Prestamo prestamo){
+        return libroService.actualizarPrestamo(prestamo);
+    }
+
+    @DeleteMapping("/prestamo/{id_prestamo}")
+    public String borrarPrestamo(@PathVariable int id_prestamo){
+        return libroService.borrarPrestamo(id_prestamo);
     }
 }
