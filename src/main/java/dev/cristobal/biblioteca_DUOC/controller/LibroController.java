@@ -37,4 +37,36 @@ public class LibroController {
         return libroService.deleteLibro(id);
     }
 
+    @GetMapping("/total")
+    public int totalLibrosV2() {
+        return libroService.totalLibrosV2();
+    }
+
+    @GetMapping("/masAntiguo")
+    public Libro masAntiguo() {
+        return libroService.masAntiguo();
+    }
+
+    @GetMapping("/masNuevo")
+    public Libro masNuevo() {
+        return libroService.masNuevo();
+    }
+    @GetMapping("/buscarPorAutor/{nombreAutor}")
+    public List<Libro> buscarPorAutor(@PathVariable String nombreAutor) {
+        return libroService.buscarPorAutor(nombreAutor);
+    }
+    @GetMapping("/ordenarPorFecha")
+    public List<Libro>  ordenarPorFecha() {
+        return libroService.ordenarPorFecha();
+    }
+
+    @GetMapping("/buscarPorIsbn/{isbn}")
+    public Libro buscarPorIsbn(@PathVariable String isbn) {
+        return libroService.buscarPorIsbn(isbn);
+    }
+
+    @GetMapping("/buscarPorFecha/{fechaPublicacion}")
+    public List<Libro> libroPorFecha(@PathVariable int fechaPublicacion) {
+        return libroService.libroPorFecha(fechaPublicacion);
+    }
 }

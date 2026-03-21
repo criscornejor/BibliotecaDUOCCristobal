@@ -32,4 +32,35 @@ public class LibroService {
         return "Libro eliminado";
     }
 
+    public int totalLibrosV1() {
+        return libroRepository.obtenerLibros().size();
+    }
+
+    public int totalLibrosV2() {
+        return libroRepository.totalLibros();
+    }
+
+    public Libro masAntiguo() {
+        return libroRepository.masAntiguo();
+    }
+
+    public Libro masNuevo() {
+        return libroRepository.masNuevo();
+    }
+
+    public List<Libro> buscarPorAutor(String nombreAutor) {
+        return libroRepository.buscarPorAutor(nombreAutor);
+    }
+
+    public List<Libro> ordenarPorFecha() {
+        return libroRepository.ordenarPorFecha();
+    }
+
+    public Libro buscarPorIsbn(String isbn) {
+        return libroRepository.buscarPorIsbn(isbn);
+    }
+
+    public List<Libro> libroPorFecha(int fechaPublicacion) {
+        return libroRepository.librosPorFecha(fechaPublicacion);
+    }
 }
